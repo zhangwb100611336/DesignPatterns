@@ -3,17 +3,19 @@
 #include <map>
 
 
-typedef shape* (* CreatorFuntion)(void);
 namespace factoryPattern
 {
+	typedef shape* (* CreatorFuntion)(void);
 	class ShapeFactory
 	{
 	public：
 		shapeFactory();
-		static ShapeFactory& create();
+		~shapeFactory();
+		static ShapeFactory& init();
 		static bool shapeRegister(const char* str,CreatorFuntion pCreatorFuntion);
-		static getShape(string str);
+		static getShape(const char* str);
 	private:
 		static map<string,shape*> shapeMap{};
-	}
+		static map<string,CreatorFuntion>  objMap{};
+	};
 }
